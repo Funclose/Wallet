@@ -7,3 +7,4 @@ public:
     static void run(FinanceManager& manager);
 };
 
+//hell
