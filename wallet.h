@@ -4,7 +4,7 @@ class Wallet {
 private:
     std::string _name;
     double _balance;
-    std::string _type; // "debit" или "credit"
+    std::string _type; // "debit" ГЁГ«ГЁ "credit"
 
 public:
     Wallet(const std::string& name, const std::string& type, double initialBalance = 0);
@@ -17,3 +17,4 @@ public:
     bool withdraw(double amount);
 };
 
+//hello
