@@ -45,7 +45,8 @@ void Menu::run(FinanceManager& manager) {
             std::cout << "Кошелек/карта добавлен(а).\n";
             break;
         }
-        case 2: {
+        case 2: 
+        {
             std::string name;
             double amount;
             std::cout << "Введите имя кошелька/карты для пополнения: ";
@@ -56,7 +57,8 @@ void Menu::run(FinanceManager& manager) {
             manager.depositToWallet(name, amount);
             break;
         }
-        case 3: {
+        case 3: 
+        {
             std::string name, category, description;
             double amount;
             std::cout << "Введите имя кошелька/карты для расхода: ";
@@ -77,7 +79,8 @@ void Menu::run(FinanceManager& manager) {
         case 5:
             manager.showExpenses();
             break;
-        case 6: {
+        case 6: 
+        {
             std::string period;
             std::cout << "Введите период отчета (day/week/month): ";
             std::getline(std::cin, period);
@@ -100,7 +103,7 @@ void Menu::run(FinanceManager& manager) {
         }
         case 9: {
             std::string filename;
-            std::cout << "Введите имя файла для сохранения отчетов: ";
+            std::cout << "Введите имя файла для сохранения отчетов пример(text.txt): ";
             std::getline(std::cin, filename);
             manager.saveReportsToFile(filename);
             break;

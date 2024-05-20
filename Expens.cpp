@@ -6,7 +6,8 @@ Expense::Expense(const std::string& category, double amount, const std::string& 
     _date = std::time(nullptr); // Текущая дата и время
 }
 
-std::string Expense::getCategory() const {
+std::string Expense::getCategory() const 
+{
     return _category;
 }
 
