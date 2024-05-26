@@ -56,6 +56,16 @@ void Menu::run(FinanceManager& manager) {
             std::getline(std::cin, name);
             std::cout << "Введите тип (1.debit/2.credit): ";
             std::getline(std::cin, type);
+            if (type == "1") {
+                type = "debit";
+            }
+            else if (type == "2") {
+                type = "credit";
+            }
+            else {
+                std::cout << "Неверный тип. Установлен тип 'debit' по умолчанию.\n";
+                type = "debit";
+            }
             std::cout << "Введите начальный баланс: ";
             std::cin >> balance;
             std::cin.ignore();
@@ -86,6 +96,16 @@ void Menu::run(FinanceManager& manager) {
             break;
         }
         case 3: {
+            auto wallets = manager.getWallets();
+            if (wallets.empty()) {
+                std::cout << "Нет доступных кошельков для добавления расхода.\n";
+                break;
+            }
+
+            std::cout << "Список доступных кошельков:\n";
+            for (const auto& wallet : wallets) {
+                std::cout << "- " << wallet->getName() << " (" << wallet->getType() << "), Баланс: " << wallet->getBalance() << "\n";
+            }
             std::string name, category, description;
             double amount;
             std::cout << "Введите имя кошелька/карты для расхода: ";
