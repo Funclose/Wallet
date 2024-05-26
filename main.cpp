@@ -3,9 +3,9 @@
 #include <iostream>
 #include <Windows.h>
 
-int main() {
+int main() 
+{
     setlocale(LC_ALL, "");
-    /*SetConsoleOutputCP(1251);*/
     FinanceManager manager;
     Menu::run(manager);
     return 0;

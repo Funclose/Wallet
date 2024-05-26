@@ -2,7 +2,8 @@
 #include <iostream>
 #include <memory>
 #include <string>
-
+#include "FinancialManager.h"
+#include "wallet.h"
 void Menu::showMenu() {
     std::cout << "\nСистема управления персональными финансами\n";
     std::cout << "1. Добавить кошелек/карту\n";
@@ -23,7 +24,7 @@ bool Menu::askContinue() {
     while (true) {
         std::cout << "\nХотите продолжить? (y/n): ";
         std::cin >> choice;
-        std::cin.ignore(); // Игнорировать оставшийся символ новой строки
+        std::cin.ignore(); 
         if (choice == 'y' || choice == 'Y') {
             return true;
         }
@@ -41,7 +42,7 @@ void Menu::run(FinanceManager& manager) {
         showMenu();
         int choice;
         std::cin >> choice;
-        std::cin.ignore(); // Игнорировать оставшийся символ новой строки
+        std::cin.ignore(); 
 
         if (choice == 0) {
             break;
@@ -53,7 +54,7 @@ void Menu::run(FinanceManager& manager) {
             double balance;
             std::cout << "Введите имя кошелька/карты: ";
             std::getline(std::cin, name);
-            std::cout << "Введите тип (debit/credit): ";
+            std::cout << "Введите тип (1.debit/2.credit): ";
             std::getline(std::cin, type);
             std::cout << "Введите начальный баланс: ";
             std::cin >> balance;
@@ -64,6 +65,16 @@ void Menu::run(FinanceManager& manager) {
             break;
         }
         case 2: {
+            auto wallets = manager.getWallets();
+            if (wallets.empty()) {
+                std::cout << "Нет доступных кошельков для пополнения.\n";
+                break;
+            }
+
+            std::cout << "Список доступных кошельков:\n";
+            for (const auto& wallet : wallets) {
+                std::cout << "- " << wallet->getName() << " (" << wallet->getType() << "), Баланс: " << wallet->getBalance() << "\n";
+            }
             std::string name;
             double amount;
             std::cout << "Введите имя кошелька/карты для пополнения: ";
